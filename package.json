@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx ts-node crawler.ts",
-    "build": "tsc && node crawler.js"
+    "build": "tsc && node crawler.js",
+    "only-build": "tsc"
   },
   "author": "",
   "license": "ISC",
