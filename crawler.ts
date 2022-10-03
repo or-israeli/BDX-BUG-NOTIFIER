@@ -1,7 +1,8 @@
 const nFetch = require("node-fetch");
 
-const INTERVAL = parseInt(process.env.interval) || 3600000;
-const SEARCHED_STRING = process.env.searchedString || "dalton-homes";
+const INTERVAL = parseInt(process.env.INTERVAL) || 3600000;
+const SEARCHED_STRING = process.env.SEARCHED_STRING || "dalton-homes";
+const WEBHOOK_URL = process.env.WEBHOOK_URL;
 setInterval(crawlPage, INTERVAL);
 
 async function crawlPage() {
@@ -15,18 +16,15 @@ async function crawlPage() {
   });
   const resInText = await res.text();
   if (resInText.toLowerCase().includes(SEARCHED_STRING)) {
-    await nFetch(
-      "https://hooks.slack.com/services/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",
-      {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          text: `@here 🦝searched string detected:🦝\n ${SEARCHED_STRING}`,
-        }),
-      }
-    );
+    await nFetch(WEBHOOK_URL, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: `@channel 🦝searched string detected:🦝\n ${SEARCHED_STRING}`,
+      }),
+    });
   }
 }
 crawlPage();
