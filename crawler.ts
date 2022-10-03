@@ -23,7 +23,7 @@ async function crawlPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          text: `🦝searched string detected:🦝\n ${SEARCHED_STRING}`,
+          text: `@here 🦝searched string detected:🦝\n ${SEARCHED_STRING}`,
         }),
       }
     );
