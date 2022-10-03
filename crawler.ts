@@ -1,7 +1,7 @@
 const nFetch = require("node-fetch");
 
 const INTERVAL = parseInt(process.env.interval) || 3600000;
-const SEARCHED_STRING = process.env.searchedString || "atlanta";
+const SEARCHED_STRING = process.env.searchedString || "dalton-homes";
 setInterval(crawlPage, INTERVAL);
 
 async function crawlPage() {
